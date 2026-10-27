@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>AI 群聊</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-left">
+    <div class="room-name" id="roomName">群聊</div>
+    <div class="room-link" id="roomLink"></div>
+  </div>
+  <div class="top-btns">
+    <button id="copyLinkBtn" title="复制群链接">复制链接</button>
+    <button id="adminBtn" title="管理 AI 成员">管理 AI</button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="members" id="membersPanel">
+    <div class="panel-title">群成员</div>
+    <div class="sub">真人在线</div>
+    <ul id="humanList"></ul>
+    <div class="sub">AI 成员</div>
+    <ul id="aiList"></ul>
+    <div class="rename-box">
+      <input id="nameInput" maxlength="24" placeholder="改个名字">
+      <button id="renameBtn">改名</button>
+    </div>
+    <p class="hint">点 AI 名字可把 @它 填进输入框，只让它回。</p>
+    <p class="hint">本群不做交易、不碰交易账号。链接即邀请，请勿公开转发。</p>
+  </aside>
+
+  <main class="chat">
+    <div class="messages" id="messages"></div>
+    <div class="composer">
+      <div class="preview" id="imgPreview" style="display:none">
+        <span id="imgPreviewName"></span>
+        <button id="imgRemoveBtn">去掉图片</button>
+      </div>
+      <div class="composer-row">
+        <label class="img-btn" title="发图片">＋图
+          <input type="file" id="imgInput" accept="image/png,image/jpeg,image/gif,image/webp" hidden>
+        </label>
+        <input id="textInput" maxlength="4000" placeholder="发消息…（@AI名字 只让它回，不@就全体一起回）" autocomplete="off">
+        <button id="sendBtn">发送</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="admin-backdrop" id="adminBackdrop" style="display:none"></div>
+<section class="admin" id="adminPanel" style="display:none">
+  <div class="admin-head">
+    <h2>管理 AI 成员</h2>
+    <button id="adminCloseBtn">关闭</button>
+  </div>
+  <p class="hint">不预置任何名单：你贴任意 OpenAI 兼容的 API 链接 + key，点「测试」自动匹配接通、拉回模型列表，再选模型保存。key 只存在服务器上，页面上只显示尾号；key 不要发给任何人、不要贴到聊天里。</p>
+  <form id="addForm" class="add-form">
+    <label>名字 <input id="fName" maxlength="24" placeholder="给这个 AI 起个群里的名字" required></label>
+    <label>API 链接 <input id="fBase" placeholder="https://你的API地址/v1" required></label>
+    <label>Key <input id="fKey" type="password" placeholder="粘贴 key" required></label>
+    <label>模型
+      <span class="model-row">
+        <input id="fModel" placeholder="先点测试拉取，或手动填" required>
+        <button type="button" id="testBtn">测试并拉取模型</button>
+      </span>
+    </label>
+    <select id="fModelSelect" style="display:none"></select>
+    <label class="check"><input type="checkbox" id="fVision"> 这个 AI 能看图片</label>
+    <div class="form-msg" id="formMsg"></div>
+    <button type="submit">添加到群里</button>
+  </form>
+  <div class="sub">已有成员</div>
+  <ul id="adminList"></ul>
+</section>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

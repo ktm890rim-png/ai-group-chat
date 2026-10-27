@@ -1,0 +1,1 @@
+{"dependencies":{"ws":"^8.18.0"},"description":"一条通用链接即邀请的群聊 Web 应用：真人点开链接自动进群，AI 成员走通用 OpenAI 兼容接口接入，不预置任何固定名单。","engines":{"node":">=18"},"main":"server.js","name":"ai-group-chat","scripts":{"start":"node server.js","test":"node test/ws-test.js"},"version":"1.0.0"}
